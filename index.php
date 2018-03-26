@@ -13,6 +13,23 @@
 <?php include('menu.php'); ?>
 <body>
 
+<?php
+/* Connexion à une base ODBC avec l'invocation de pilote */
+$dsn = 'pgsql:dbname=scp1;host=10.189.251.9';
+$user = 'scp1';
+$password = 'scp1';
+
+try {
+    $dbh = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : ' . $e->getMessage();
+}
+
+?>
+
+    
+    
+    
 <div class="container-fluid">
   <h1>My First Bootstrap Page</h1>
   <p>This is some text.</p>
