@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 
-<html lang="en">
+
+<html lang="fr">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -14,6 +10,7 @@ and open the template in the editor.
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<?php include('menu.php'); ?>
 <body>
 
 <div class="container-fluid">
