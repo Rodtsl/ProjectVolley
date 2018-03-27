@@ -125,7 +125,7 @@
      */
     protected function executerRequeteAvecResultat($sql, $bindings = null)
     {
-   /*     print_r2($this->executerRequete($sql, $bindings)->fetchAll(PDO::FETCH_ASSOC));*/
+  //      print_r2($this->executerRequete($sql, $bindings)->fetchAll(PDO::FETCH_ASSOC));
       return $this->executerRequete($sql, $bindings)->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -140,7 +140,7 @@
     protected function executerRequete($sql, $bindings = null)
     {
      
-        print_r2($this->db->prepare($sql)) ;  
+    //    print_r2($this->db->prepare($sql)) ;  
       $stmt = $this->db->prepare($sql);
 
       if ($bindings !== null && is_array($bindings)) {
@@ -156,7 +156,7 @@
         echo "requete pas execute";
         throw new PDOException($error[0] . ': ' . $error[2]);
       }
-      print_r2($stmt);
+      //print_r2($stmt);
       return $stmt;
     
     }
@@ -183,7 +183,7 @@
     {
       $sql = "SELECT * FROM adherents";
       print_r2($sql);
-      print_r2($this->executerRequeteAvecResultat($sql));
+      //print_r2($this->executerRequeteAvecResultat($sql));
       return $this->executerRequeteAvecResultat($sql);
     }
   }
