@@ -24,7 +24,7 @@ print_r($db);
 $sql = $db->afficheLogin();
 print_r($sql);
 ?>
-    <a>FIN</a>
+  
 
 
 
