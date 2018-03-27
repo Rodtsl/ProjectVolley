@@ -5,12 +5,12 @@
       <a class="navbar-brand" href="#">SCPVOLLEY</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Accueil</a></li>
+        <li class="active"><a href="index.php">Accueil</a></li>
       <li><a href="#">Actualités</a></li>
       <li><a href="#">Equipes</a></li>
       <li><a href="#">Calendriers/résultats</a></li>
       <li><a href="#">Galerie Photos</a></li>
-      <li><a href="#">Localisation</a></li>
+      <li><a href="#">Partenaires</a></li>
       <li><a href="#">Rejoignez-nous</a></li>
       <li><a href="contact.php">Contact</a></li>
       <li class="dropdown">
@@ -18,7 +18,7 @@
           <ul class="dropdown-menu">
                 <div class="container">
 <div class="row">
-<div class="col-xs-12">
+<div class="row col-sm-12">
     
     <div class="main">
             
