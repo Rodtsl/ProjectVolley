@@ -5,9 +5,13 @@
    *
    * Méthodes liées à l'accès à la base de donnée.
    */
+
+
+
   use PDO;
   use PDOException;
   require_once 'config.php';
+  
   /**
    * Class BaseDB
    *
@@ -90,6 +94,10 @@
     {
       $this->db->commit();
     }
+    public function query($sql)
+        {
+        return $this->db->query($sql);
+        }
 
     /**
      * Exécute une requête retournant des lignes sur la base de données Oracle.
@@ -156,9 +164,17 @@
       
       $sql = "select login from adherents";
       
-      print_r2($this->executerRequeteAvecResultat($sql));
+      //print_r2($this->executerRequeteAvecResultat($sql));
       return $this->executerRequeteAvecResultat($sql);
     
-    }   
+    }
+    function getLogin() {
+    $sql =  'select login,mdp,nom from adherents';
+     foreach  ($this->query($sql) as $row) {
+        print $row['login'] . "\t";
+        print  $row['mdp'] . "\t";
+        print $row['nom'] . "\n";
+    }
+  }
   }
 ?>
