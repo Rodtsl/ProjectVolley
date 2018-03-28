@@ -7,9 +7,7 @@
    */
   use PDO;
   use PDOException;
-
   require_once 'config.php';
-
   /**
    * Class BaseDB
    *
@@ -29,7 +27,6 @@
   {
 
     private $db;
-
     private $username;
     private $password;
     private $database;
@@ -51,28 +48,12 @@
 
       $this->connexionBDD();
     }
-
-    /**
-     * Établit la connexion à la base de données.
-     */
-    /*$dsn = 'pgsql:dbname=scp1;host=10.189.251.9';
-*$user = 'scp1';
-*$password = 'scp1';
-*
-    *try {
-*    $dbh = new PDO($dsn, $user, $password);
-*} catch (PDOException $e) {
-*    echo 'Connexion échouée : ' . $e->getMessage();
-*}*/
     private function connexionBDD()//Fonction servant à faire la connection à la base de donnée
     {
       try {
         //connexion à la base de données
-          $dsn = 'pgsql:dbname='.$this->database.';host='.$this->host;
-       $this->db = new PDO($dsn,
+    $this->db = new PDO('pgsql:host=' . $this->host . ';dbname=' . $this->database,
       $this->username, $this->password);
-    
-
         if (DEBUG_PDO) {
           $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
@@ -82,12 +63,10 @@
           "\n<br>Si la base n'existe pas encore, créez-la puis exécutez installation_bdd.php.");
       }
     }
-
     public function __destruct()
     {
       $this->close();
     }
-
     /**
      * Fermeture de la base de données.
      */
@@ -97,7 +76,6 @@
         $this->db = null;
       }
     }
-
     /**
      * Commence une transaction.
      */
@@ -105,7 +83,6 @@
     {
       $this->db->beginTransaction();
     }
-
     /**
      * Commit les changements effectués durant la transaction.
      */
@@ -113,8 +90,6 @@
     {
       $this->db->commit();
     }
-
-
 
     /**
      * Exécute une requête retournant des lignes sur la base de données Oracle.
@@ -125,6 +100,7 @@
      */
     protected function executerRequeteAvecResultat($sql, $bindings = null)
     {
+  //      
   //      print_r2($this->executerRequete($sql, $bindings)->fetchAll(PDO::FETCH_ASSOC));
       return $this->executerRequete($sql, $bindings)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -139,10 +115,7 @@
      */
     protected function executerRequete($sql, $bindings = null)
     {
-     
-    //    print_r2($this->db->prepare($sql)) ;  
-      $stmt = $this->db->prepare($sql);
-
+      //print_r2($stmt);
       if ($bindings !== null && is_array($bindings)) {
         foreach ($bindings as $key => $value) {
           $stmt->bindValue($key, $value);
@@ -158,7 +131,6 @@
       }
       //print_r2($stmt);
       return $stmt;
-    
     }
   }
 
@@ -181,10 +153,12 @@
     
      function afficheLogin()//function d'affichage de la table coureur
     {
-      $sql = "SELECT * FROM adherents";
-      print_r2($sql);
-      //print_r2($this->executerRequeteAvecResultat($sql));
+      
+      $sql = "select login from adherents";
+      
+      print_r2($this->executerRequeteAvecResultat($sql));
       return $this->executerRequeteAvecResultat($sql);
-    }
+    
+    }   
   }
 ?>

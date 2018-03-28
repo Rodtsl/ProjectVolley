@@ -20,9 +20,9 @@
 <body>
 
 <?php
-print_r($db);
-$sql = $db->afficheLogin();
-print_r($sql);
+    $db = new Database();
+    $sql = $db->afficheLogin();
+    
 ?>
   
 
