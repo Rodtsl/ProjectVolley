@@ -25,7 +25,10 @@
      echo "</PRE>";
 
    }
-
+  function apostropheSession($string){//change une apostrophe vers un backslash une appostrophe pour les variables de sessions
+    $string=preg_replace("~\'~", "\'", $string);
+    return $string;
+    }
 
   class BaseDB //PDO en classe
   {
@@ -174,7 +177,42 @@
         print $row['login'] . "\t";
         print  $row['mdp'] . "\t";
         print $row['nom'] . "\n";
-    }
+        }
+    }    
+    function getMatch(){
+       $sql=' select id_creneau,debut, fin, salles.nom as "salle", eq.nom as "equipe", nom_equipe_b as "adversaire" from creneaux join salles using(id_salle) join matchs ma using(id_creneau) join equipes eq on ma.id_equipe_a=eq.id_equipe' ;
+       echo"<script>
+
+
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate: '2016-05-02',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow more link when too many events
+      events: [
+      ";
+      foreach  ($this->query($sql) as $row){
+        echo "{
+          id: ".$row['id_creneau'].",
+          title: 'MATCH DE".$row['equipe']." contre ".  apostropheSession($row['adversaire'])." (".$row['salle'].")',
+          start: '".$row['debut']."',
+          end:'".$row['fin']."'    
+        },";  
+        
+      }
+      echo "  ]
+    });
+  });
+</script>";
+    }    
   }
-  }
+  
+  
 ?>

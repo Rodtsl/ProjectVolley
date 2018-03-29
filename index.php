@@ -20,9 +20,7 @@
 <body>
 
 <?php
-   
-    $sql = $db->getLogin();
-    print_r2($sql);
+    //$sql = $db->getMatch();
 ?>
   
 
